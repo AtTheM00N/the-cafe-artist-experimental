@@ -1,0 +1,4 @@
+Drop client photos here as {slotId}.jpg (or .webp/.avif/.png) and rebuild.
+
+Slots: room-wide, room-detail, plate-1, plate-2, plate-3, celebration
+Spec: >= 2000px long edge · landscape for full-bleeds · 4:5-croppable for dishes

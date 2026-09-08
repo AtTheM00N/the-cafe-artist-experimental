@@ -17,6 +17,8 @@ abstractions ("unexposed frames"), never as fake facts.
 | Exact address + Google Maps link | Only "Sector 18, Noida" is verified today | `after.mapsUrl` |
 | ₹2,799 package inclusions (list) **or** approval to show the price without itemization | The invitation shows the verified price only; it never invents its contents | `occasion.invitation.inclusions` |
 | Opening hours (or a decision to omit hours entirely) | No hours are verified — the row simply doesn't render until provided | `after.hours` |
+| **Production URL** | Unlocks canonical URL, robots sitemap line, and OG `url` — nothing is guessed in the meantime | `site.siteUrl` |
+| **Hero photograph** — the room at night, wide, atmospheric | The hero is the site's first impression and the LCP priority; until it arrives the frame is a designed unexposed slot | `public/photos/hero.jpg` |
 
 ## P1 — STRONGLY RECOMMENDED BEFORE LAUNCH
 
@@ -24,6 +26,7 @@ abstractions ("unexposed frames"), never as fake facts.
 
 | Filename | Subject | Orientation / count |
 |---|---|---|
+| `hero.jpg` | **The room at night, wide** — the hero's full-bleed environment | Landscape, ≥ 2000px long edge, 1 |
 | `room-wide.jpg` | Interior, wide — the room at its atmospheric best | Landscape (16:10 crop), 1 |
 | `room-detail.jpg` | Table detail — candlelight, glassware, texture | Portrait (3:4 crop), 1 |
 | `plate-1.jpg` | Signature dish or drink #1 | 4:5-croppable, 1 |
@@ -40,7 +43,7 @@ Until then they render as designed unexposed plates — never as invented dishes
 **Review quotes** — 2–3 real customer quotes (with permission). There is currently no
 review section by design; quotes can be added to Act 04 once real ones exist.
 
-**Wordmark/logo** (if one exists) — otherwise the typographic treatment is the brand.
+**Wordmark/logo** (if one exists) — otherwise the typographic treatment is the brand. A temporary candle-mark favicon (`public/icon.svg`) stands in until a real logo arrives.
 
 ## P2 — ENRICHMENT (post-launch)
 

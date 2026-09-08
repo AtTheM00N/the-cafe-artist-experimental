@@ -127,6 +127,18 @@ body::before {
   letter-spacing: -0.01em;
 }
 
+/* Hero tagline — quieter than the title by design: smaller, softer, dimmer. */
+.tagline-hero {
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  font-style: italic;
+  font-weight: 440;
+  font-size: clamp(1.5rem, 2.4vw, 2.375rem);
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  color: var(--color-bone-70);
+}
+
 .meta {
   display: block;
   font-family: var(--font-meta);
@@ -195,6 +207,18 @@ body::before {
   font-size: 0.8rem;
 }
 
+/* Directional arrow — nudges forward on hover/focus, never spins or bounces. */
+.cta-arrow {
+  width: 0.72em;
+  height: 0.72em;
+  margin-left: 0.65em;
+  transition: transform 0.45s var(--ease-swell);
+}
+.cta:hover .cta-arrow,
+.cta:focus-visible .cta-arrow {
+  transform: translate(2px, -2px);
+}
+
 /* LINKS */
 
 .u-link {
@@ -236,6 +260,100 @@ body::before {
   opacity: 0.16;
   mix-blend-mode: overlay;
   background-image: var(--grain-url);
+}
+
+/* HERO — the opening frame of the film */
+
+/* Readability scrim: darkens the top and bottom edges, keeps the room visible. */
+.hero-scrim {
+  background:
+    radial-gradient(120% 100% at 50% 18%, rgb(7 5 4 / 0.3), transparent 60%),
+    linear-gradient(180deg, rgb(7 5 4 / 0.5) 0%, rgb(7 5 4 / 0.18) 38%, rgb(7 5 4 / 0.55) 100%);
+}
+@media (max-width: 767px) {
+  .hero-scrim {
+    background:
+      radial-gradient(140% 90% at 50% 12%, rgb(7 5 4 / 0.35), transparent 55%),
+      linear-gradient(180deg, rgb(7 5 4 / 0.55) 0%, rgb(7 5 4 / 0.22) 34%, rgb(7 5 4 / 0.68) 100%);
+  }
+}
+
+/* Ambient warm light — follows the pointer like light in a room, not a spotlight.
+   Position is driven by --gx/--gy (JS); GSAP owns opacity. Hidden on touch/reduced. */
+.hero-glow {
+  background: radial-gradient(52vmin 52vmin at var(--gx, 50%) var(--gy, 30%), rgb(217 113 58 / 0.1), transparent 68%);
+  opacity: 0;
+}
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .hero-glow {
+    display: none;
+  }
+}
+
+/* OPENING CEREMONY — black → ember → hairline → glow → the room */
+
+.opening {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+.opening-veil {
+  position: absolute;
+  inset: 0;
+  background: #070504;
+}
+.opening-meta {
+  position: absolute;
+  top: 2.5rem;
+  left: var(--page);
+  opacity: 0;
+}
+.opening-ember {
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  width: 3px;
+  height: 3px;
+  border-radius: 9999px;
+  background: var(--color-ember);
+  transform-origin: center;
+}
+.opening-hairline {
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  width: clamp(160px, 18vw, 280px);
+  height: 1px;
+  background: rgb(242 234 219 / 0.32);
+  transform-origin: left center;
+}
+.opening-glow {
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  width: clamp(280px, 60vw, 520px);
+  height: clamp(280px, 60vw, 520px);
+  margin: calc(clamp(280px, 60vw, 520px) / -2) 0 0 calc(clamp(280px, 60vw, 520px) / -2);
+  border-radius: 9999px;
+  background: radial-gradient(55% 55%, rgb(217 113 58 / 0.2), transparent 70%);
+  transform-origin: center;
+}
+.opening-skip {
+  position: absolute;
+  right: var(--page);
+  bottom: 2.5rem;
+  pointer-events: auto;
+  font-family: var(--font-meta);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-bone-45);
+  border: 1px solid var(--color-rule);
+  background: transparent;
+  padding: 0.55rem 1rem;
+  opacity: 0;
+  cursor: pointer;
 }
 
 /* CURSOR — contextual, restrained, difference-blended */
@@ -355,7 +473,8 @@ html.has-cursor * {
   }
   .cta::before,
   .u-link::after,
-  .cursor-ring-inner {
+  .cursor-ring-inner,
+  .cta-arrow {
     transition: none;
   }
 }

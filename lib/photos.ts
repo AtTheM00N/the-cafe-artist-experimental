@@ -10,6 +10,7 @@
  */
 
 export const SLOT_IDS = [
+  'hero',
   'room-wide',
   'room-detail',
   'plate-1',
@@ -26,6 +27,11 @@ export const PHOTO_SLOTS: Record<
   SlotId,
   { subject: string; alt: string; priority: boolean }
 > = {
+  hero: {
+    subject: 'INTERIOR — EVENING',
+    alt: 'The Cafe Artist at night — low light, long tables, candlelight',
+    priority: true,
+  },
   'room-wide': {
     subject: 'INTERIOR — WIDE',
     alt: 'Wide view of The Cafe Artist at night — low light and long tables',

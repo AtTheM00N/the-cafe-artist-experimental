@@ -13,6 +13,8 @@ type PhotoSlotProps = {
   sizes?: string
   cursorLabel?: string
   parallax?: number
+  /** Set false when entrance is owned elsewhere (hero: Opening.tsx) — no wipe/parallax. */
+  motion?: boolean
 }
 
 /**
@@ -30,17 +32,21 @@ export function PhotoSlot({
   sizes = '(max-width: 767px) 100vw, 45vw',
   cursorLabel = 'VIEW',
   parallax = 6,
+  motion = true,
 }: PhotoSlotProps) {
   const meta = PHOTO_SLOTS[id]
 
   return (
     <figure
-      data-motion="wipe"
+      {...(motion ? { 'data-motion': 'wipe' } : {})}
       data-cursor={cursorLabel}
       className={`relative overflow-hidden bg-night-800 grain ${aspect} ${className}`}
     >
-      <div className="absolute inset-0" data-motion-inner>
-        <div className="absolute inset-[-7%]" data-parallax={String(parallax)}>
+      <div className="absolute inset-0" {...(motion ? { 'data-motion-inner': '' } : {})}>
+        <div
+          className="absolute inset-0"
+          {...(motion ? { 'data-parallax': String(parallax) } : {})}
+        >
           {src ? (
             <Image
               src={src}

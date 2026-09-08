@@ -19,6 +19,8 @@ export const site = {
   tagline: 'Always In My Heart.',
   /** FACT — user-verified. */
   packagePrice: '₹2,799',
+  /** CONTENT DEPENDENCY (P0) — canonical production URL. `null` keeps robots/sitemap honest. */
+  siteUrl: null as string | null,
 } as const
 
 export const acts = [
@@ -35,6 +37,11 @@ export const curtain = {
   meta: 'SECTOR 18 — NOIDA',
   /** Rendered uppercase by .display-hero. */
   lines: ['The Cafe', 'Artist'],
+  /** FACT — user-verified tagline; quieter than the title by design. */
+  tagline: site.tagline,
+  cta: 'Plan an evening',
+  /** Internal anchor to the celebration — no booking is invented. */
+  ctaTarget: '#act-03',
   kicker: 'AN EVENING IN FIVE ACTS',
   cue: 'SCROLL',
 } as const

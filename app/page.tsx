@@ -1,3 +1,4 @@
+import Opening from '@/components/systems/Opening'
 import Curtain from '@/components/acts/Curtain'
 import Room from '@/components/acts/Room'
 import Craft from '@/components/acts/Craft'
@@ -13,12 +14,15 @@ export default async function Page() {
   const photos = resolvePhotos()
 
   return (
-    <main id="main">
-      <Curtain />
-      <Room photos={photos} />
-      <Craft photos={photos} />
-      <Occasion photos={photos} />
-      <After />
-    </main>
+    <>
+      <Opening />
+      <main id="main">
+        <Curtain photos={photos} />
+        <Room photos={photos} />
+        <Craft photos={photos} />
+        <Occasion photos={photos} />
+        <After />
+      </main>
+    </>
   )
 }

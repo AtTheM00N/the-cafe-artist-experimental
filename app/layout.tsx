@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Fraunces, Space_Grotesk, Space_Mono } from 'next/font/google'
+import { site } from '@/lib/content'
 import './globals.css'
 import SmoothScroll from '@/components/systems/SmoothScroll'
 import Cursor from '@/components/systems/Cursor'
@@ -26,10 +27,38 @@ const mono = Space_Mono({
   display: 'swap',
 })
 
-export const metadata: Metadata = {
+const description =
+  'A candlelit digital evening in five acts — low light, long tables, and a room that takes its time. The Cafe Artist, Sector 18, Noida.'
+
+const social = {
   title: 'The Cafe Artist — Sector 18, Noida',
-  description:
-    'A digital evening in five acts — low light, long tables, and a room that takes its time. The Cafe Artist, Sector 18, Noida.',
+  description,
+}
+
+/**
+ * No OG image on purpose: the hero photograph doesn't exist yet and a designed
+ * placeholder would be a fake social image. Add `openGraph.images` once a real
+ * photo is verified (P0 hero slot). `siteUrl` (P0) unlocks canonical + sitemap.
+ */
+export const metadata: Metadata = {
+  title: social.title,
+  description,
+  applicationName: 'The Cafe Artist',
+  category: 'food',
+  alternates: site.siteUrl ? { canonical: site.siteUrl } : undefined,
+  openGraph: {
+    ...social,
+    type: 'website',
+    siteName: 'The Cafe Artist',
+    locale: 'en_IN',
+    ...(site.siteUrl ? { url: site.siteUrl } : {}),
+  },
+  twitter: {
+    card: 'summary',
+    ...social,
+  },
+  icons: { icon: '/icon.svg' },
+  robots: { index: true, follow: true },
 }
 
 export const viewport: Viewport = {

@@ -75,7 +75,7 @@ export default function Craft({ photos }: { photos: PhotoMap }) {
       className="w-full"
     />
     <figcaption>
-      <h3>Chilli Potato</h3>
+      <h3> White Sauce Pasta</h3>
       <p>{craft.spread.note}</p>
     </figcaption>
   </figure>

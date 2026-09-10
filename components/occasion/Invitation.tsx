@@ -11,11 +11,11 @@ export function Invitation() {
   const inv = occasion.invitation
 
   return (
-    <div className="border border-rule bg-night-900 p-8 md:p-14">
+    <div className="w-full border border-rule bg-night-900 p-8 md:p-14">
       <Meta>{inv.label}</Meta>
       <p
         className="mt-8 font-display font-medium leading-none tracking-[-0.02em] text-bone"
-        style={{ fontSize: 'clamp(4rem, 9vw, 8.5rem)' }}
+        style={{ fontSize: 'clamp(4rem, 7.5vw, 7.75rem)' }}
       >
         {inv.price}
       </p>

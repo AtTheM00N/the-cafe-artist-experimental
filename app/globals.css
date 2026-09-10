@@ -29,6 +29,11 @@
 :root {
   /* GRID — page margin; columns handled by Tailwind's 12-col grid */
   --page: clamp(1.25rem, 5vw, 5.5rem);
+  /* VERTICAL RHYTHM — two shared steps, the vertical counterparts of the
+     grid's shared columns: one gap between composition rows, one larger
+     breath before full-bleed environments. No per-section magic numbers. */
+  --space-row: clamp(4rem, 10vh, 6rem);
+  --space-env: clamp(5rem, 12vh, 8rem);
   --grain-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -36,6 +41,7 @@
 
 html {
   scroll-behavior: auto; /* Lenis owns smoothing; native fallback handles its own */
+  overflow-x: clip; /* full-bleed imagery must never open a horizontal scroll */
 }
 
 body {
@@ -74,8 +80,8 @@ body::before {
   font-family: var(--font-display);
   font-variation-settings: "SOFT" 0, "WONK" 1;
   font-weight: 500;
-  font-size: clamp(2.75rem, 7vw, 7.25rem);
-  line-height: 0.95;
+  font-size: clamp(2.75rem, 5.2vw, 6rem);
+  line-height: 0.98;
   letter-spacing: -0.02em;
   text-wrap: balance;
 }
@@ -99,13 +105,28 @@ body::before {
   will-change: transform;
 }
 
+/* Neon accent — the second title line carries the cafe's lighting
+   (magenta → ember), kept to typography, never a full-page gradient. */
+.neon-accent-line > span {
+  background: linear-gradient(94deg, #e07abc 8%, #d9713a 92%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+/* Mobile gets a deliberate stagger on the second line — poster, not wrap. */
+@media (max-width: 640px) {
+  .display-hero .neon-accent-line {
+    margin-left: 9vw;
+  }
+}
+
 .body-serif {
   font-family: var(--font-display);
   font-variation-settings: "SOFT" 40, "WONK" 0;
   font-size: clamp(1.0625rem, 1.4vw, 1.3125rem);
   line-height: 1.65;
   color: var(--color-bone-70);
-  max-width: 34ch;
+  max-width: 42ch;
 }
 
 .plate-name {
@@ -248,6 +269,23 @@ body::before {
   filter: saturate(0.92) contrast(1.03) sepia(0.06) brightness(0.97);
 }
 
+/* FRAGMENT — a real photograph pinned like a print on the art wall.
+   Used sparingly: two in the hero, never as floating decoration. */
+.fragment {
+  position: relative;
+  background: var(--color-night-800);
+  box-shadow:
+    0 1px 0 rgb(242 234 219 / 0.08) inset,
+    0 18px 40px -18px rgb(0 0 0 / 0.7);
+}
+.fragment::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border: 1px solid rgb(242 234 219 / 0.07);
+}
+
 .grain {
   position: relative;
 }
@@ -278,10 +316,16 @@ body::before {
   }
 }
 
-/* Ambient warm light — follows the pointer like light in a room, not a spotlight.
-   Position is driven by --gx/--gy (JS); GSAP owns opacity. Hidden on touch/reduced. */
+/* Ambient light — follows the pointer like the cafe's own lighting waking up:
+   magenta/violet core with a warm ember fringe. Never a harsh circle. */
 .hero-glow {
-  background: radial-gradient(52vmin 52vmin at var(--gx, 50%) var(--gy, 30%), rgb(217 113 58 / 0.1), transparent 68%);
+  background: radial-gradient(
+    52vmin 52vmin at var(--gx, 50%) var(--gy, 30%),
+    rgb(224 122 188 / 0.11),
+    rgb(157 78 224 / 0.07) 45%,
+    rgb(217 113 58 / 0.05) 60%,
+    transparent 72%
+  );
   opacity: 0;
 }
 @media (hover: none), (prefers-reduced-motion: reduce) {
@@ -290,7 +334,9 @@ body::before {
   }
 }
 
-/* OPENING CEREMONY — black → ember → hairline → glow → the room */
+/* OPENING — "the lights come on." One centred stage, mathematically centred:
+   every layer is a grid cell of the same 3-row grid (1fr auto 1fr), so the
+   composition is optically centred at every viewport without offsets. */
 
 .opening {
   position: fixed;
@@ -303,41 +349,103 @@ body::before {
   inset: 0;
   background: #070504;
 }
-.opening-meta {
+.opening-stage {
   position: absolute;
-  top: 2.5rem;
-  left: var(--page);
-  opacity: 0;
+  inset: 0;
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
 }
-.opening-ember {
+.opening-stage-top {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.opening-stage-center {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: clamp(2rem, 6vh, 4rem);
+}
+/* The wavy illuminated line of the actual wall, redrawn as a light stroke.
+   The core is one shared coordinate frame: the dot, the glow and the wave
+   all share its exact centre — the light origin the line draws outward from. */
+.opening-core {
+  position: relative;
+  width: clamp(300px, 62vmin, 640px);
+  aspect-ratio: 600 / 120;
+}
+.opening-wave {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.opening-wave path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.opening-dot {
   position: absolute;
   left: 50%;
-  top: 44%;
-  width: 3px;
-  height: 3px;
+  top: 50%;
+  width: 4px;
+  height: 4px;
   border-radius: 9999px;
   background: var(--color-ember);
-  transform-origin: center;
-}
-.opening-hairline {
-  position: absolute;
-  left: 50%;
-  top: 44%;
-  width: clamp(160px, 18vw, 280px);
-  height: 1px;
-  background: rgb(242 234 219 / 0.32);
-  transform-origin: left center;
+  box-shadow: 0 0 10px 2px rgb(217 113 58 / 0.55);
+  transform: translate(-50%, -50%);
 }
 .opening-glow {
   position: absolute;
   left: 50%;
-  top: 44%;
-  width: clamp(280px, 60vw, 520px);
-  height: clamp(280px, 60vw, 520px);
-  margin: calc(clamp(280px, 60vw, 520px) / -2) 0 0 calc(clamp(280px, 60vw, 520px) / -2);
+  top: 50%;
+  width: 1px;
+  height: 1px;
   border-radius: 9999px;
-  background: radial-gradient(55% 55%, rgb(217 113 58 / 0.2), transparent 70%);
-  transform-origin: center;
+  box-shadow:
+    0 0 180px 70px rgb(197 74 156 / 0.16),
+    0 0 120px 46px rgb(157 78 224 / 0.12),
+    0 0 90px 34px rgb(217 113 58 / 0.14);
+}
+.opening-title {
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+  font-weight: 560;
+  font-size: clamp(1.45rem, 6.2vw, 4.6rem);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--color-bone);
+  white-space: nowrap;
+}
+.opening-title em {
+  font-style: normal;
+  background: linear-gradient(92deg, rgb(224 122 188 / 0.95) 12%, rgb(217 113 58 / 0.95) 88%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.opening-sub {
+  margin-top: 1.4rem;
+  font-family: var(--font-meta);
+  font-size: 0.6875rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--color-bone-45);
+  text-align: center;
+  white-space: nowrap;
+}
+.opening-stage-bottom {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 2.5rem;
 }
 .opening-skip {
   position: absolute;

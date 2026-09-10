@@ -211,7 +211,7 @@ export default function CandleScene() {
   }
 
   return (
-    <div ref={wrapRef} className="relative mt-24 h-[260vh] md:mt-32">
+    <div ref={wrapRef} className="relative mt-[var(--space-env)] h-[260vh]">
       <div
         ref={stageRef}
         data-cursor="HOLD"

@@ -1,22 +1,24 @@
 /**
  * THE CAFE ARTIST — photo slot manifest.
  *
- * The design ships complete without photography: every slot renders as a designed
- * "unexposed frame" until a photo is dropped into `public/photos/{slotId}.jpg`.
- * Rebuild after adding photos (slots are resolved at build time).
- *
- * Spec for the client: JPG/WebP, >= 2000px long edge, landscape for full-bleeds,
- * 4:5-croppable for dishes. Per-slot crops are applied by the manifest ratios.
+ * Every slot maps to an ORIGINAL supplied photograph (processed into
+ * public/photos/*.webp by scripts/process-assets.cjs from public/photos/_inspect).
+ * Screenshots and social previews are reference material only — never shipped.
  */
 
 export const SLOT_IDS = [
   'hero',
+  'room-mural',
+  'room-pink',
   'room-wide',
-  'room-detail',
-  'plate-1',
-  'plate-2',
-  'plate-3',
-  'celebration',
+  'craft-hero',
+  'craft-paneer',
+  'craft-spread',
+  'craft-noodles',
+  'craft-coffee',
+  'occasion-cake',
+  'occasion-room',
+  'brand-seal',
 ] as const
 
 export type SlotId = (typeof SLOT_IDS)[number]
@@ -28,38 +30,63 @@ export const PHOTO_SLOTS: Record<
   { subject: string; alt: string; priority: boolean }
 > = {
   hero: {
-    subject: 'INTERIOR — EVENING',
-    alt: 'The Cafe Artist at night — low light, long tables, candlelight',
+    subject: 'THE ROOM — EVENING',
+    alt: 'The Cafe Artist dining room in the evening — blue banquettes, warm wood ceiling and neon light',
     priority: true,
   },
+  'room-mural': {
+    subject: 'THE MURAL WALL',
+    alt: 'A painted mural face on a polka-dot wall at The Cafe Artist',
+    priority: false,
+  },
+  'room-pink': {
+    subject: 'THE PINK CORRIDOR',
+    alt: 'A pink fringe-lit corridor with cafe seating at The Cafe Artist',
+    priority: false,
+  },
   'room-wide': {
-    subject: 'INTERIOR — WIDE',
-    alt: 'Wide view of The Cafe Artist at night — low light and long tables',
+    subject: 'THE CELEBRATION BOOTH',
+    alt: 'A booth dressed with balloons and heart signage at The Cafe Artist',
     priority: false,
   },
-  'room-detail': {
-    subject: 'THE ROOM — DETAIL',
-    alt: 'Detail of the room — candlelight on a set table',
+  'craft-hero': {
+    subject: 'SIGNATURE PLATE — CHILLI POTATO',
+    alt: 'Chilli potato — glossy, sauce-coated starter plated on ceramic at The Cafe Artist',
     priority: false,
   },
-  'plate-1': {
-    subject: 'SIGNATURE PLATE 01',
-    alt: 'Signature dish at The Cafe Artist, plated in low light',
+  'craft-paneer': {
+    subject: 'SIGNATURE PLATE — CHILLI PANEER',
+    alt: 'Chilli paneer tossed with capsicum and onion in a ceramic bowl at The Cafe Artist',
     priority: false,
   },
-  'plate-2': {
-    subject: 'SIGNATURE PLATE 02',
-    alt: 'Signature dish at The Cafe Artist, plated in low light',
+  'craft-spread': {
+    subject: 'THE MAINS SPREAD',
+    alt: 'A saucy pasta main plated with garlic bread at The Cafe Artist',
     priority: false,
   },
-  'plate-3': {
-    subject: 'SIGNATURE PLATE 03',
-    alt: 'Signature dish or drink at The Cafe Artist, plated in low light',
+  'craft-noodles': {
+    subject: 'WOK-TOSSED NOODLES',
+    alt: 'Wok-tossed noodles plated with dipping sauces at The Cafe Artist',
     priority: false,
   },
-  celebration: {
-    subject: 'CELEBRATION SETUP',
-    alt: 'A celebration table set at The Cafe Artist — cake and candles',
+  'craft-coffee': {
+    subject: 'NOODLES AND COLD COFFEE',
+    alt: 'A bowl of noodles and a tall glass of cold coffee on a purple placemat at The Cafe Artist',
+    priority: false,
+  },
+  'occasion-cake': {
+    subject: 'THE BIRTHDAY CAKE',
+    alt: 'A decorated birthday cake with chocolate drip and berries at The Cafe Artist',
+    priority: false,
+  },
+  'occasion-room': {
+    subject: 'THE CELEBRATION SETUP',
+    alt: 'The booth styled for a celebration — balloons, hearts and neon light at The Cafe Artist',
+    priority: false,
+  },
+  'brand-seal': {
+    subject: 'THE CAFE ARTIST — SIGNAGE ART',
+    alt: 'The Cafe Artist signage artwork — hand-drawn pan-flame logo and lettering',
     priority: false,
   },
 }

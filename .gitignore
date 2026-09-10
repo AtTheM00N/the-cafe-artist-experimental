@@ -5,5 +5,7 @@ out
 .env*
 .DS_Store
 server.log
+*.log
+.freebuff/
 .freebuff/preview-*.log
 .freebuff/preview-*.log.err

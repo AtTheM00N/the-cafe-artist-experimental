@@ -25,7 +25,7 @@ export function Act({ act, children, className = '' }: ActProps) {
       aria-label={`Act ${meta.index} — ${meta.name}`}
       className={`act relative ${className}`}
     >
-      <div className="relative mb-16 md:mb-24">
+      <div className="relative mb-[var(--space-row)]">
         <Rule />
         <Meta className="absolute left-0 top-1/2 -translate-y-1/2 bg-night-950 pr-5">
           {meta.index} / {meta.name.toUpperCase()}

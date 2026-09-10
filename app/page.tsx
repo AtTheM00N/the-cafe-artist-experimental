@@ -21,7 +21,7 @@ export default async function Page() {
         <Room photos={photos} />
         <Craft photos={photos} />
         <Occasion photos={photos} />
-        <After />
+        <After photos={photos} />
       </main>
     </>
   )

@@ -13,6 +13,14 @@
 /** Studio credit — swap this one line when the studio name is confirmed. */
 export const STUDIO_NAME = 'INSERT_NAME'
 
+/**
+ * FACTS — client-supplied ordering links (delivery/online ordering).
+ */
+export const ordering = {
+  swiggy: 'https://www.swiggy.com/city/noida-1/the-cafe-artist-sector-18-rest603339',
+  zomato: 'https://www.zomato.com/ncr/the-cafe-artist-sector-18-noida',
+} as const
+
 export const site = {
   name: 'The Cafe Artist',
   location: 'Sector 18, Noida',
@@ -25,14 +33,14 @@ export const site = {
   /** FACT — user-verified (reference pack). */
   instagramUrl: 'https://www.instagram.com/thecafeartist_/',
   /** FACT — user-verified (reference pack). */
-  hours: '11:30am – 11:30pm',
+  hours: '11:30am – 11:30pm (Open Always <3)',
   /** FACT — user-verified (reference pack). */
-  phone: '081303 05256',
+  phone: '81303 05256',
   /** FACT — user-verified (reference pack). */
-  whatsapp: '081303 05256',
+  whatsapp: '81303 05256',
   /** FACT — user-verified (reference pack). */
   addressLine:
-    'In front of metro pillar 80, near JS Arcade, D Block, Pocket K, Sector 18, Noida, Uttar Pradesh 201301',
+    'In front of metro pillar 80, Near JS Arcade, D Block, Pocket K, Sector 18, Noida, Uttar Pradesh 201301',
   /** FACT — user-verified (reference pack). */
   mapsUrl:
     'https://www.google.com/maps/place/The+Cafe+artist/@28.5725162,77.3240413,778m/data=!3m2!1e3!4b1!4m6!3m5!1s0x390ce529ed4e77e5:0xca2a6aea94c6582f!8m2!3d28.5725162!4d77.3240413!16s%2Fg%2F11s5bw4dh0',
@@ -70,7 +78,8 @@ export const room = {
   meta: 'MURALS · NEON · COLOUR',
   lines: ['Every wall', 'is in on it.'],
   body: 'Painted faces watch you eat. Neon hums over the coffee. Flowers and fringe light the corners, and the furniture refuses to match — on purpose. Nothing here is a backdrop; the room is the first artwork you sit inside.',
-  closing: 'You don\u2019t visit this room. You move into it for the evening.',
+  closing: 'Move in for the evening.',
+  emoticon: '────୨ৎ────'
 } as const
 
 export const craft = {
@@ -90,12 +99,17 @@ export const craft = {
     note: 'Wok-tossed, unapologetically orange, gone in minutes.',
   },
   spread: {
+    name: 'White sauce pasta',
     caption: 'MAINS, SHARED',
-    line: 'Plates land together. Nobody waits.',
+    note: 'Plates land together. Nobody waits.',
   },
   noodles: {
     name: 'Hakka noodles',
     note: 'With the cold coffee — the order the booth was built for.',
+  },
+  order: {
+    label: 'ORDER THE CRAFT',
+    line: 'The room doesn\u2019t travel. The plates do.',
   },
 } as const
 
@@ -135,5 +149,14 @@ export const after = {
   mapsUrl: site.mapsUrl,
   hours: site.hours,
   contact: site.whatsapp,
+  /** FACTS — client-supplied Google rating and reviews (trimmed, never rewritten). */
+  google: {
+    rating: '4.7',
+    reviews: [
+      'The Chicken Spicy Pizza is to die for. IT WAS FIRE!! Atmosphere is chill and cool, the staff is really friendly. Considering the quality, the price is reasonable.',
+      'Excellent place — I\u2019d say it\u2019s the best place to eat in Sector 18. Food tastes so much better, and the owner works on feedback from the customers.',
+      'A hidden gem where great food, beautiful vibes, and artistic charm come together.',
+    ],
+  },
   credit: `SITE BY ${STUDIO_NAME}`,
 } as const

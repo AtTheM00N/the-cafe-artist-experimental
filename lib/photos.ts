@@ -14,7 +14,6 @@ export const SLOT_IDS = [
   'craft-hero',
   'craft-paneer',
   'craft-spread',
-  'craft-noodles',
   'craft-coffee',
   'occasion-cake',
   'occasion-room',
@@ -61,12 +60,7 @@ export const PHOTO_SLOTS: Record<
   },
   'craft-spread': {
     subject: 'THE MAINS SPREAD',
-    alt: 'A saucy pasta main plated with garlic bread at The Cafe Artist',
-    priority: false,
-  },
-  'craft-noodles': {
-    subject: 'WOK-TOSSED NOODLES',
-    alt: 'Wok-tossed noodles plated with dipping sauces at The Cafe Artist',
+    alt: 'A saucy White sauce pasta plated with garlic bread at The Cafe Artist',
     priority: false,
   },
   'craft-coffee': {
@@ -81,7 +75,7 @@ export const PHOTO_SLOTS: Record<
   },
   'occasion-room': {
     subject: 'THE CELEBRATION SETUP',
-    alt: 'The booth styled for a celebration — balloons, hearts and neon light at The Cafe Artist',
+    alt: 'The booth styled for a booked celebration — balloons, heart signage and fringe light at The Cafe Artist',
     priority: false,
   },
   'brand-seal': {

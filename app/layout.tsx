@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Fraunces, Space_Grotesk, Space_Mono } from 'next/font/google'
 import { site } from '@/lib/content'
+// @ts-ignore - Next.js resolves global CSS imports in the app router.
 import './globals.css'
 import SmoothScroll from '@/components/systems/SmoothScroll'
 import Cursor from '@/components/systems/Cursor'
@@ -22,7 +23,7 @@ const grotesk = Space_Grotesk({
 
 const mono = Space_Mono({
   subsets: ['latin'],
-  weight: ['400', '700'],
+  weight: ['400'], // 700 is unused site-wide — don't ship the second face
   variable: '--font-mono',
   display: 'swap',
 })

@@ -36,32 +36,17 @@ export default function Occasion({ photos }: { photos: PhotoMap }) {
         {/* ONE COMPOSITION — cake panel + price panel, seated on one shared row */}
         <div className="mt-[var(--space-row)] grid grid-cols-12 items-stretch gap-x-6">
           <PhotoSlot
-            id="occasion-cake"
-            src={photos['occasion-cake']}
-            aspect="aspect-[4/5] md:aspect-auto md:h-full"
-            caption="03 / THE OCCASION — CAKE OUT"
-            sizes="(max-width: 767px) 92vw, 33vw"
-            className="col-span-11 md:col-span-5"
-          />
-          <div className="col-span-12 mt-6 flex md:col-span-7 md:col-start-6 md:mt-0">
-            <Invitation />
-          </div>
-        </div>
+  id="occasion-cake"
+  src={photos['occasion-cake']}
+  aspect="aspect-[4/5]"
+  caption="03 / THE OCCASION — CAKE OUT"
+  sizes="(max-width: 767px) 90vw, 34vw"
+  className="col-span-12 md:col-span-5 md:col-start-1"
+/>
 
-        {/* THE DRESSED ROOM — full-bleed environment beneath the offer */}
-        <div className="relative mt-[var(--space-env)]">
-          <div className="relative left-1/2 w-screen -translate-x-1/2">
-            <PhotoSlot
-              id="occasion-room"
-              src={photos['occasion-room']}
-              aspect="aspect-[16/10] max-md:aspect-[4/3]"
-              caption="04 / THE ROOM, RESERVED"
-              captionClassName="px-[var(--page)]"
-              sizes="100vw"
-              parallax={8}
-              className="w-full"
-            />
-          </div>
+<div className="col-span-12 mt-6 flex md:col-span-6 md:col-start-7 md:mt-0">
+  <Invitation />
+</div>
         </div>
 
         <CandleScene />

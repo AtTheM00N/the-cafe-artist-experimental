@@ -39,17 +39,13 @@ export default function Nav() {
           {site.name}
         </a>
         <Cta
-          href="#act-03"
-          variant="solid"
-          size="sm"
-          cursorLabel="PLAN"
-          onClick={(e) => {
-            e.preventDefault()
-            scrollToTarget('#act-03')
-          }}
-        >
-          Plan an evening
-        </Cta>
+  href="https://wa.me/918130305256"
+  variant="solid"
+  size="sm"
+  cursorLabel="PLAN"
+>
+  Plan an evening
+</Cta>
       </div>
     </header>
   )

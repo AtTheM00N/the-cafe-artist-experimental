@@ -85,9 +85,17 @@ export function PhotoSlot({
           </div>
         </div>
         {overlay ? (
-          <div className="pointer-events-none absolute inset-x-0 bottom-10 z-10 px-[var(--page)] md:bottom-14">
-            {overlay}
-          </div>
+          <>
+            {/* Legibility scrim — full-bleed copy earns a gradient, never floats
+                raw on busy photography. Sits above the image, below the text. */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-2/5 bg-gradient-to-t from-night-950/80 via-night-950/35 to-transparent"
+            />
+            <div className="pointer-events-none absolute inset-x-0 bottom-12 z-10 px-[var(--page)] md:bottom-16">
+              {overlay}
+            </div>
+          </>
         ) : null}
       </div>
       {caption ? (

@@ -87,7 +87,7 @@ body::before {
 }
 
 .display-hero {
-  font-size: clamp(3.75rem, 12.5vw, 12.5rem);
+  font-size: clamp(3rem, 8.5vw, 8.5rem);
   line-height: 0.9;
   text-transform: uppercase;
   font-weight: 560;
@@ -112,6 +112,7 @@ body::before {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  text-shadow: 0 0 18px rgb(224 122 188 / 0.22);
 }
 /* Mobile gets a deliberate stagger on the second line — poster, not wrap. */
 @media (max-width: 640px) {
@@ -146,6 +147,7 @@ body::before {
   font-size: clamp(2.25rem, 5.5vw, 4.75rem);
   line-height: 1.05;
   letter-spacing: -0.01em;
+  white-space: normal;
 }
 
 /* Hero tagline — quieter than the title by design: smaller, softer, dimmer. */
@@ -168,6 +170,18 @@ body::before {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-bone-45);
+}
+
+/* NOTE — sentence-case supporting voice. Exists because .meta is unlayered CSS
+   and silently beat Tailwind's normal-case utility; the evocative dish lines
+   get their own role instead of fighting the spec-label style. */
+.note {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  color: var(--color-bone-70);
 }
 
 /* ACT STRUCTURE */
@@ -585,4 +599,151 @@ html.has-cursor * {
   .cta-arrow {
     transition: none;
   }
+}
+
+.occasion-panel,
+.invitation {
+  height: 100%;
+}
+
+.invitation {
+  width: 100%;
+}
+
+.craft-closing-row {
+  align-items: end;
+}
+
+.craft-closing-row > * {
+  min-width: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+[class*="overflow-hidden"] {
+  isolation: isolate;
+}
+
+[data-act="act-02"] .photo-slot,
+.craft-photo {
+  max-height: 68vh;
+}
+
+[data-act="act-02"] img {
+  max-height: 68vh;
+  object-fit: cover;
+}
+
+/* FINAL IMAGE CONTAINMENT */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.photo-slot,
+[class*="photo-slot"] {
+  overflow: hidden;
+}
+
+.photo-slot img,
+[class*="photo-slot"] img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.room-frame {
+  width: 100%;
+  margin: 0;
+  padding: 10px;
+  background: var(--color-night-900);
+  border: 1px solid var(--color-rule);
+}
+
+.room-frame .photo-slot {
+  width: 100%;
+  overflow: hidden;
+}
+
+.room-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.food-frame {
+  width: 100%;
+}
+
+.food-frame .photo-slot {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--color-rule);
+  background: var(--color-night-900);
+  padding: 8px;
+}
+
+.food-frame img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.food-frame figcaption {
+  padding-top: 1rem;
+}
+
+.food-frame figcaption h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.5vw, 2.4rem);
+  line-height: 1;
+}
+
+.food-frame figcaption p {
+  margin-top: 0.5rem;
+  max-width: 30ch;
+}
+.room-frame {
+  width: min(100%, 520px);
+  margin-inline: auto;
+}
+
+@media (max-width: 767px) {
+  .room-frame {
+    width: 100%;
+  }
+}
+.food-frame {
+  width: min(100%, 420px);
+  margin-inline: auto;
+}
+
+@media (max-width: 767px) {
+  .food-frame {
+    width: 100%;
+  }
+}
+.room-frame img,
+.food-frame img {
+  max-height: 560px;
+  object-fit: cover;
+}
+@media (max-width: 767px) {
+  .room-frame img,
+  .food-frame img {
+    max-height: none;
+  }
+}
+.food-frame + .food-frame {
+  margin-top: 0;
+}
+.craft-food-grid {
+  column-gap: clamp(1.5rem, 4vw, 4rem);
+  row-gap: clamp(3rem, 7vw, 7rem);
 }

@@ -211,7 +211,7 @@ export default function CandleScene() {
   }
 
   return (
-    <div ref={wrapRef} className="relative mt-[var(--space-env)] h-[260vh]">
+    <div ref={wrapRef} className="relative h-[260vh]">
       <div
         ref={stageRef}
         data-cursor="HOLD"
@@ -344,16 +344,13 @@ export default function CandleScene() {
           </p>
           <div data-cs="after" className="pointer-events-auto">
             <Cta
-              href={candleScene.ctaTarget}
-              variant="ghost"
-              cursorLabel="PLAN"
-              onClick={(e) => {
-                e.preventDefault()
-                scrollToTarget(candleScene.ctaTarget)
-              }}
-            >
-              {candleScene.cta}
-            </Cta>
+  href="https://wa.me/918130305256"
+  variant="solid"
+  size="sm"
+  cursorLabel="PLAN"
+>
+  Plan an evening
+</Cta>
           </div>
         </div>
 
